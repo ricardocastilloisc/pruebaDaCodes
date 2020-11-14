@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { TeamsRoutingModule } from './teams-routing.module';
 import { TeamsComponent } from './teams.component';
+import { LoadingComponent } from '../../layout/loading/loading.component';
 
 
 @NgModule({
-  declarations: [TeamsComponent],
+  declarations: [TeamsComponent, LoadingComponent],
   imports: [
     CommonModule,
     TeamsRoutingModule
