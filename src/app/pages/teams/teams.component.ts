@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesteamsService } from '../../services/servicesteams.service';
-import { DataTeam } from '../../intefaces/teams.interfaces';
+import { DataTeam, Team } from '../../intefaces/teams.interfaces';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @Component({
   selector: 'app-teams',
@@ -8,9 +11,11 @@ import { DataTeam } from '../../intefaces/teams.interfaces';
   styleUrls: ['./teams.component.css'],
 })
 export class TeamsComponent implements OnInit {
+
+  TeamModalData: Team;
   DataTeams: DataTeam;
   Loading: boolean = true;
-  constructor(private _serviceTeams: ServicesteamsService) {}
+  constructor(private _serviceTeams: ServicesteamsService, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this._serviceTeams.getTeams().subscribe((resp: DataTeam) => {
@@ -18,4 +23,12 @@ export class TeamsComponent implements OnInit {
       this.Loading = false;
     });
   }
+
+
+  openModal(team:Team, modal)
+  {
+    this.TeamModalData = team;
+    this.modalService.open(modal);
+  }
+
 }

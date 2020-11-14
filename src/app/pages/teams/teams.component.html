@@ -4,7 +4,7 @@
 <app-loading *ngIf="Loading"></app-loading>
 
 <div class="row" *ngIf="!Loading">
-    <div *ngFor="let team of DataTeams.data" class="col-sm-6 col-md-4 col-lg-3 mb-3">
+    <div *ngFor="let team of DataTeams.data" class="col-sm-6 col-md-4 col-lg-3 mb-3" (click)="openModal(team, TeamModal )">
         <div>
             <div class="card h-100 shadow">
                 <div class="card-body">
@@ -20,9 +20,24 @@
             </div>
         </div>
     </div>
-
-
-
-
-
 </div>
+
+
+<ng-template #TeamModal>
+    <div class="modal-body">
+        <div>
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex mb-4 justify-content-center content-wrapper">
+                        <img src="{{TeamModalData.logo}}" class="img-fluid">
+                    </div>
+                    <h5 class="card-title d-flex align-items-center"> {{TeamModalData.name}} </h5>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex"><img alt="" class="mr-3" src="{{TeamModalData.country.flag}}"><span> {{TeamModalData.country.name}}</span></div>
+                </div>
+                <!---->
+            </div>
+        </div>
+    </div>
+</ng-template>
