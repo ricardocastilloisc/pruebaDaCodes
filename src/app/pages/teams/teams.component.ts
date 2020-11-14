@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesteamsService } from '../../services/servicesteams.service';
 import { DataTeam, Team } from '../../intefaces/teams.interfaces';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { Title } from '@angular/platform-browser';
 
 
 
@@ -15,7 +16,10 @@ export class TeamsComponent implements OnInit {
   TeamModalData: Team;
   DataTeams: DataTeam;
   Loading: boolean = true;
-  constructor(private _serviceTeams: ServicesteamsService, private modalService: NgbModal) {}
+  constructor(private _serviceTeams: ServicesteamsService, private modalService: NgbModal, private titleService: Title) {
+
+    this.titleService.setTitle("Equipos");
+  }
 
   ngOnInit(): void {
     this._serviceTeams.getTeams().subscribe((resp: DataTeam) => {
